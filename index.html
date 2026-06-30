@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mundial 2026 - Grupos y Eliminatorias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Copa Mundial 2026</p>
+      <h1>Grupos, resultados y eliminatorias</h1>
+      <p class="intro">Carga todos los resultados de la fase de grupos. Cuando los 72 partidos esten completos, se habilita la seleccion de ganadores desde dieciseisavos hasta la final.</p>
+    </div>
+    <button id="resetBtn" class="reset-btn" type="button">Reiniciar resultados</button>
+  </header>
+
+  <main>
+    <section class="legend" aria-label="Filtros por estado">
+      <button class="legend-btn" type="button" data-status="sky"><i class="status-sky"></i> Clasifica momentaneamente</button>
+      <button class="legend-btn" type="button" data-status="green"><i class="status-green"></i> Clasificado 100%</button>
+      <button class="legend-btn" type="button" data-status="yellow"><i class="status-yellow"></i> Eliminado momentaneamente</button>
+      <button class="legend-btn" type="button" data-status="red"><i class="status-red"></i> Sin chances</button>
+    </section>
+    <section id="statusTeams" class="status-teams" aria-live="polite"></section>
+
+    <section class="summary">
+      <article>
+        <strong>Formato</strong>
+        <span>12 grupos de 4. Avanzan los 2 primeros de cada grupo y los 8 mejores terceros.</span>
+      </article>
+      <article>
+        <strong>Criterios usados</strong>
+        <span>Puntos; entre empatados: puntos, DG y GF; luego DG/GF generales, conducta y ranking FIFA.</span>
+      </article>
+      <article>
+        <strong>Estado</strong>
+        <span id="statusText">Sin resultados cargados.</span>
+      </article>
+      <article>
+        <strong>Goles</strong>
+        <span id="goalsText">0 goles. Promedio: 0.00 por partido.</span>
+      </article>
+      <article class="third-cut-card">
+        <strong>Corte mejores terceros</strong>
+        <div id="thirdCutText" class="third-cut-summary">Sin resultados cargados.</div>
+      </article>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Grupos</h2>
+        <p>Los partidos estan ordenados por jornada: 1 vs 2, 3 vs 4; 1 vs 3, 4 vs 2; 4 vs 1, 2 vs 3.</p>
+      </div>
+      <div id="groups" class="groups-grid"></div>
+    </section>
+
+    <section class="thirds-section">
+      <div class="section-title">
+        <h2>Mejores terceros</h2>
+        <p>Los primeros 8 clasifican momentaneamente a la ronda de 32.</p>
+      </div>
+      <div id="thirdsTable" class="thirds-table"></div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h2>Eliminatorias FIFA 2026</h2>
+        <p>Los cruces de dieciseisavos siguen el cuadro oficial. La seleccion de ganadores se habilita cuando termina la fase de grupos cargada.</p>
+      </div>
+      <div class="bracket-legend" aria-label="Colores por posicion de clasificacion">
+        <span class="bracket-legend-item"><i class="slot-rank-1"></i> 1ros de grupo</span>
+        <span class="bracket-legend-item"><i class="slot-rank-2"></i> 2dos de grupo</span>
+        <span class="bracket-legend-item"><i class="slot-rank-3"></i> 3ros clasificados</span>
+      </div>
+      <div id="bracketLock" class="bracket-lock" aria-live="polite"></div>
+      <div id="bracket" class="knockout-board"></div>
+    </section>
+  </main>
+
+  <div id="resetModal" class="modal-backdrop" hidden>
+    <div class="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="resetModalTitle">
+      <p class="eyebrow">Confirmacion</p>
+      <h2 id="resetModalTitle">Reiniciar resultados</h2>
+      <p>Estas seguro de borrar todos los resultados cargados? Esta accion vuelve las tablas y cruces al estado inicial.</p>
+      <div class="modal-actions">
+        <button id="cancelResetBtn" class="ghost-btn" type="button">Cancelar</button>
+        <button id="confirmResetBtn" class="danger-btn" type="button">Si, reiniciar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="needModal" class="modal-backdrop" hidden>
+    <div class="confirm-modal need-modal" role="dialog" aria-modal="true" aria-labelledby="needModalTitle">
+      <p class="eyebrow">Necesita para clasificar</p>
+      <h2 id="needModalTitle">Equipo</h2>
+      <p id="needModalText">Escenario pendiente.</p>
+      <div class="modal-actions">
+        <button id="closeNeedBtn" class="ghost-btn" type="button">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
